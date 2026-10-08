@@ -24,10 +24,6 @@ import supervision as sv
 import yaml
 
 
-# ============================================================
-# LOGGING
-# ============================================================
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(threadName)s | %(message)s",
@@ -35,10 +31,6 @@ logging.basicConfig(
 
 logger = logging.getLogger("footfall-pilot")
 
-
-# ============================================================
-# GENERAL HELPERS
-# ============================================================
 
 def normalize_embedding(embedding: np.ndarray) -> np.ndarray:
     embedding = np.asarray(embedding, dtype=np.float32).reshape(-1)
@@ -118,10 +110,6 @@ def source_is_live(source) -> bool:
         )
     )
 
-
-# ============================================================
-# YOLOX PERSON DETECTOR
-# ============================================================
 
 def yolox_postprocess(
     outputs: np.ndarray,
@@ -399,10 +387,6 @@ class YOLOXPersonDetector:
         )
 
 
-# ============================================================
-# BYTETRACK
-# ============================================================
-
 @dataclass
 class PersonTrack:
     track_id: int
@@ -472,10 +456,6 @@ class PersonTracker:
 
         return results
 
-
-# ============================================================
-# FACE DETECTION AND EMBEDDINGS
-# ============================================================
 
 @dataclass
 class FaceObservation:
@@ -638,10 +618,6 @@ def assign_faces_to_tracks(
     return assignments
 
 
-# ============================================================
-# VIRTUAL LINE CROSSING
-# ============================================================
-
 def line_side(
     point: tuple[float, float],
     line: tuple[float, float, float, float],
@@ -801,11 +777,7 @@ class CrossingMonitor:
 
         return crossings
 
-
-# ============================================================
 # DATABASE AND COUNTING RULES
-# ============================================================
-
 class FootfallDatabase:
     def __init__(
         self,
@@ -1440,9 +1412,6 @@ class FootfallDatabase:
             self.identities.close()
 
 
-# ============================================================
-# CAMERA WORKER
-# ============================================================
 
 class CameraWorker(threading.Thread):
     def __init__(
@@ -1733,9 +1702,6 @@ class CameraWorker(threading.Thread):
             )
 
 
-# ============================================================
-# MIDNIGHT BIOMETRIC DELETION
-# ============================================================
 
 class RetentionWorker(threading.Thread):
     def __init__(
