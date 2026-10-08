@@ -1,0 +1,5 @@
+numpy>=1.26,<3.0
+opencv-contrib-python-headless>=4.10
+onnxruntime>=1.18
+supervision>=0.24
+PyYAML>=6.0

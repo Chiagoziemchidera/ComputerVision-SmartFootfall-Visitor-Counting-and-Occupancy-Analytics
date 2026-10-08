@@ -1,0 +1,46 @@
+location:
+  id: PILOT-LOCATION-01
+  timezone: Africa/Lagos
+
+operation:
+  test_mode: true
+  business_start: "08:00"
+  business_end: "21:00"
+  repeat_visit_hours: 2
+  face_match_threshold: 0.42
+  face_detection_threshold: 0.85
+  minimum_face_width: 60
+  process_every_nth_frame: 2
+  face_every_nth_frame: 3
+  show_preview: false
+
+models:
+  person_detector: models/yolox_nano.onnx
+  face_detector: models/face_detection_yunet.onnx
+  face_recognizer: models/face_recognition_sface.onnx
+  person_input_width: 640
+  person_input_height: 640
+  person_confidence: 0.35
+  person_nms_threshold: 0.45
+
+database:
+  events: data/footfall_events.sqlite
+  identities: data/daily_identities.sqlite
+
+cameras:
+  - id: ENTRY-CAMERA-01
+    role: entry
+    source: videos/entry.mp4
+
+    # Coordinates are percentages of the image.
+    # [x1, y1, x2, y2]
+    counting_line: [0.10, 0.60, 0.90, 0.60]
+
+    # Change this after observing the movement direction.
+    allowed_crossing: any
+
+  - id: EXIT-CAMERA-01
+    role: exit
+    source: videos/exit.mp4
+    counting_line: [0.10, 0.60, 0.90, 0.60]
+    allowed_crossing: any
