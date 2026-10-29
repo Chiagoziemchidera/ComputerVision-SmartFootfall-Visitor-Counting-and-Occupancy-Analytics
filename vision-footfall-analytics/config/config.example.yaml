@@ -1,0 +1,44 @@
+location:
+  id: EXAMPLE-LOCATION-01
+  timezone: Africa/Lagos
+
+operation:
+  test_mode: false
+  processing_start: "06:00"
+  processing_end: "00:00"
+  business_start: "08:00"
+  business_end: "21:00"
+  repeat_visit_hours: 2
+  target_fps: 15
+  face_match_threshold: 0.42
+  face_detection_threshold: 0.85
+  minimum_face_width: 60
+  process_every_nth_frame: 1
+  face_every_nth_frame: 3
+  show_preview: false
+
+models:
+  person_detector: models/yolox_nano.onnx
+  face_detector: models/face_detection_yunet.onnx
+  face_recognizer: models/face_recognition_sface.onnx
+  person_input_width: 416
+  person_input_height: 416
+  person_confidence: 0.35
+  person_nms_threshold: 0.45
+
+database:
+  driver: postgresql
+  dsn: ${FOOTFALL_POSTGRES_DSN}
+
+cameras:
+  - id: EXAMPLE-ENTRY-01
+    role: entry
+    source: ${EXAMPLE_ENTRY_01_RTSP}
+    counting_line: [0.10, 0.60, 0.90, 0.60]
+    allowed_crossing: negative_to_positive
+
+  - id: EXAMPLE-EXIT-01
+    role: exit
+    source: ${EXAMPLE_EXIT_01_RTSP}
+    counting_line: [0.10, 0.60, 0.90, 0.60]
+    allowed_crossing: positive_to_negative

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vision-footfall-analytics"
+version = "1.0.0"
+description = "Multi-location CCTV footfall and visitor analytics"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26,<3.0",
+    "opencv-contrib-python-headless>=4.10",
+    "onnxruntime-gpu>=1.18",
+    "supervision>=0.24",
+    "PyYAML>=6.0",
+    "psycopg[binary]>=3.2",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[project.scripts]
+vision-footfall = "vision_footfall.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
