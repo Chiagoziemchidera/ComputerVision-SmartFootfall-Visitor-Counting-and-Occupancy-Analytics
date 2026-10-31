@@ -297,10 +297,7 @@ Production footage cannot be shared because it may identify visitors and employe
 ## Limitations
 
 - Lighting, camera angle, face visibility and crowding affect accuracy.
-- Side-by-side movement can cause missed or duplicate events.
 - Occupancy can drift when an entry or exit is missed.
-- Same-day facial matching can produce false or missed matches.
-- Stable connectivity is required between each location and the central server.
 - Staff cannot always be separated from customers without another approved method.
 - Power BI follows the hourly reporting cycle rather than second-by-second activity.
 
